@@ -35,3 +35,15 @@ https://etherscan.io/tx/0x5cdf3685858c39c0f068e240a4def5a8111ee52d616dc00913c173
 [ERC20 outbound] !!!!!!!!!
 https://etherscan.io/tx/0x5cdf3685858c39c0f068e240a4def5a8111ee52d616dc00913c173ea555be640
 ```
+
+# Extra note:
+
+### Comment line 33 out to mute it from logging the block numbers(still scans)
+
+```
+    provider.on("block", async (blockNum: number) => {
+        //console.log(`new block [${blockNum}], target [${addr}]`); <--- comment out this!
+        const txs = await provider.getBlockWithTransactions(blockNum);
+        findERC20transferOut(txs, addr);
+    });
+```
