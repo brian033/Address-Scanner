@@ -3,7 +3,7 @@ import { ethers } from "ethers";
 
 // edit these
 const chainId = 1;
-const ftxAddr = ethers.utils.getAddress("0x2FAF487A4414Fe77e2327F0bf4AE2a264a776AD2");
+const addr = ethers.utils.getAddress("0x2FAF487A4414Fe77e2327F0bf4AE2a264a776AD2");
 // =========
 const provider = new ethers.providers.InfuraProvider(chainId);
 
@@ -30,9 +30,9 @@ function findERC20transferOut(txs: BlockWithTransactions, address: string) {
 
 const main = async function () {
     provider.on("block", async (blockNum: number) => {
-        console.log(`new block [${blockNum}], target [${ftxAddr}]`);
+        console.log(`new block [${blockNum}], target [${addr}]`);
         const txs = await provider.getBlockWithTransactions(blockNum);
-        findERC20transferOut(txs, ftxAddr);
+        findERC20transferOut(txs, addr);
     });
 };
 
